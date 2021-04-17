@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { Route } from 'react-router';
 import Navigation from '../navigation/Navigation';
+import PropTypes from 'prop-types';
 
 import defaultImage from '../../image/defaultImage.jpeg'
 import Loader from '../Loader';
@@ -56,5 +57,8 @@ const MovieDetails = ({ state, id, props }) => {
         </div>
     )
 };
+MovieDetails.PropTypes = {
+    id: PropTypes.string.isRequired
+}
 
 export default MovieDetails;
