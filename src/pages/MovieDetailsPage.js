@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import Api from '../Servises/Api';
 import Button from '../Components/Buttom';
 
-import './MovieDetailsStyle.scss'
 import MovieDetails from '../Components/MovieDetails/MovieDetails';
 
 let isCanceled = true;

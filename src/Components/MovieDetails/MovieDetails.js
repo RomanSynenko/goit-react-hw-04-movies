@@ -6,7 +6,9 @@ import defaultImage from '../../image/defaultImage.jpeg'
 import Loader from '../Loader';
 import castRoutes from '../../routes/castRoutes';
 
-const BASE_URL = "https://image.tmdb.org/t/p/original"
+import './MovieDetailsStyle.scss';
+
+const BASE_URL = "https://image.tmdb.org/t/p/original";
 const MovieDetails = ({ state, id, props }) => {
     console.log(id, props)
     const {
