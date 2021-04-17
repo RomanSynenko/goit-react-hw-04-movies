@@ -6,8 +6,8 @@ const Navigation = ({ routes, match = "" }) => {
   return (
     <NavigationContainer>
       <ul className='navigationList'>
-        {routes.map(({ path, name, exact }) => (
-          <li className='navigationListItem' key={path}>
+        {routes.map(({ path, name, exact, visible }) => (
+          visible && <li className='navigationListItem' key={path}>
             <NavLink
               exact={exact}
               to={`${match}${path}`}

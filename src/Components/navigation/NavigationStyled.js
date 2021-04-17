@@ -13,10 +13,10 @@ export const NavigationContainer = styled.nav`
 
   .navigationLink {
     text-decoration: none;
-    color: black;
+    color: white;
   }
 
   .navigationLinkActive {
-    color: green;
+    color: #303f9f;
   }
 `;

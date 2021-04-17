@@ -1,15 +1,21 @@
 body {
+  background: black;
+  color: white;
+  padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-ul {
+ul,
+a,
+div {
+  list-style: none;
+  text-decoration: none;
   padding: 0px;
   margin: 0px;
 }
@@ -19,4 +25,14 @@ ul {
   margin: 0 auto;
   padding: 20px 0;
   font-size: 24px;
+}
+/* Load button position */
+.Load_button {
+  margin: 15px auto;
+  text-align: center;
+}
+/* Go back button position */
+.Back_button {
+  position: absolute;
+  margin: 15px 0 15px 15px;
 }

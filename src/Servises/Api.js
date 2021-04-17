@@ -29,12 +29,47 @@ const fetchMoviesSearch = async ({ query, page }) => {
     }
 };
 
-export default {
-    fetchMoviesDay,
-    fetchMoviesSearch
+const fetchMoviesDetail = async movieId => {
+    try {
+        const { data } = await axios.get(`/movie/${movieId}`);
+        return data;
+    } catch { }
 };
+const fetchCast = async movieId => {
+    try {
+        const { data } = await axios.get(`/movie/${movieId}/credits`);
+        return data;
+    } catch { }
+};
+
+const fetchReviews = async movieId => {
+    try {
+        const { data } = await axios.get(`/movie/${movieId}/reviews`);
+        return data;
+    } catch { }
+};
+
 
 fetchMoviesSearch.propTypes = {
     query: PropTypes.string.isRequired,
     page: PropTypes.number.isRequired,
+};
+fetchMoviesDetail.propTypes = {
+    movieId: PropTypes.number.isRequired,
+};
+fetchCast.propTypes = {
+    movieId: PropTypes.number.isRequired,
+};
+
+fetchReviews.propTypes = {
+    movieId: PropTypes.number.isRequired,
+};
+
+
+export default {
+    fetchMoviesDay,
+    fetchMoviesSearch,
+    fetchMoviesDetail,
+    fetchCast,
+    fetchReviews
 };

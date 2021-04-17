@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-
 import PropTypes from 'prop-types';
+
 import MoviesList from '../Components/MoviesList/MoviesList';
 import SearchForm from '../Components/searchForm/searchForm';
 import Loader from '../Components/Loader';
 import Api from '../Servises/Api';
-import LoadButton from '../Components/LoadButtom';
+import Button from '../Components/Buttom';
 
-
+let isCanceled = true;
 export class MoviesPage extends Component {
   state = {
     films: [],
@@ -16,17 +16,37 @@ export class MoviesPage extends Component {
     error: null,
     isLoading: false,
     showLoadMoreButton: false,
-    isCanceled: true
   };
-
-
+  componentDidMount() {
+    const { query } = this.props.location;
+    const { page } = this.state;
+    const options = { query, page };
+    isCanceled = true;
+    this.props.location.query &&
+      Api
+        .fetchMoviesSearch(options)
+        .then(data => {
+          isCanceled && this.setState(prevState => ({
+            films: [...prevState.films, ...data.results],
+            page: prevState.page + 1,
+            query: this.props.location.query,
+          }));
+        })
+        .finally(() => {
+          isCanceled && this.state.films.length === 0 && this.setState({ error: true });
+          isCanceled && !this.state.error && this.setState({ showLoadMoreButton: true });
+          isCanceled && this.setState({ isLoading: false });
+          this.windowScrollTo();
+        })
+      ;
+  }
   componentDidUpdate(_, prevState) {
     if (prevState.query !== this.state.query) {
       this.fetchMovies();
     }
   }
   componentWillUnmount() {
-    this.setState({ isCanceled: false })
+    isCanceled = false;
   }
 
   onChengeQuery = query => {
@@ -42,19 +62,21 @@ export class MoviesPage extends Component {
     this.setState({ isLoading: true });
     const { query, page } = this.state;
     const options = { query, page };
+    isCanceled = true;
     Api
       .fetchMoviesSearch(options)
       .then(data => {
-        this.state.isCanceled && this.setState(prevState => ({
+        isCanceled && this.setState(prevState => ({
           films: [...prevState.films, ...data.results],
           page: prevState.page + 1,
           query: this.props.location.query,
         }));
       })
       .finally(() => {
-        this.state.films.length === 0 && this.setState({ error: true });
-        !this.state.error && this.setState({ showLoadMoreButton: true });
-        this.setState({ isLoading: false });
+        isCanceled && this.state.films.length === 0 && this.setState({ error: true });
+        isCanceled && !this.state.error && this.setState({ showLoadMoreButton: true });
+        isCanceled && this.setState({ isLoading: false });
+        this.state.films.length < 20 && this.setState({ showLoadMoreButton: false });
         this.windowScrollTo();
       })
       ;
@@ -73,7 +95,9 @@ export class MoviesPage extends Component {
         {!isLoading && <MoviesList films={films} />}
         {error && <h2 className='errorTitle'>Something went wrong</h2>}
         {isLoading && <Loader />}
-        {showLoadMoreButton && <LoadButton loadMore={this.fetchMovies} />}
+        <div className="Load_button">
+          {showLoadMoreButton && <Button handleGoBack={this.fetchMovies} text={'Load more'} />}
+        </div>
       </>
     );
   }

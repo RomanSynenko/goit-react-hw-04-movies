@@ -5,6 +5,7 @@ export const mainRoutes = [
     name: "Home",
     path: "/",
     exact: true,
+    visible: true,
     component: lazy(() =>
       import("../pages/HomePage" /* webpackChunkName: "home-page" */)
     ),
@@ -13,6 +14,7 @@ export const mainRoutes = [
     name: "Movies",
     path: "/movies",
     exact: true,
+    visible: true,
     component: lazy(() =>
       import("../pages/MoviesPage" /* webpackChunkName: "MoviesPage" */)
     ),
@@ -20,7 +22,7 @@ export const mainRoutes = [
     name: 'movieDetailsPage',
     path: '/movies/:movieId',
     exact: false,
-    list: false,
+    visible: false,
     component: lazy(() =>
       import(
         '../pages/MovieDetailsPage.js' /* webpackChunkName: "movie-details-page" */

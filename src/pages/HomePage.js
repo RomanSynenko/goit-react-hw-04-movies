@@ -9,25 +9,23 @@ export default class HomePage extends Component {
   state = {
     films: [],
     isLoading: false,
-    // isCanceled: true
   };
 
   componentDidMount() {
+    isCanceled = true;
     this.setState({ isLoading: true });
     Api
       .fetchMoviesDay()
       .then(
         data => {
-          !isCanceled && console.log(isCanceled)
-          isCanceled && this.setState({ films: data.results })
+          isCanceled && this.setState({ films: data.results });
         })
       .finally(() => {
-        this.setState({ isLoading: false });
+        isCanceled && this.setState({ isLoading: false });
       });
   }
   componentWillUnmount() {
     isCanceled = false;
-    // console.log(this.state.isCanceled)
   }
 
   render() {
@@ -36,7 +34,6 @@ export default class HomePage extends Component {
       <>
         <h2 className='moviesTitle'>Trending today</h2>
         {isLoading && <Loader />}
-
         <MoviesList films={this.state.films} />
       </>
     );

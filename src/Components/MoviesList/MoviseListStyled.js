@@ -11,4 +11,8 @@ export const MoviesContainer = styled.ul`
     max-width:200px;
     padding: 10px;
   }
+  >li>a{
+    color:white;
+ 
+  }
 `;

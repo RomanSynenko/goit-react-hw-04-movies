@@ -7,5 +7,5 @@ export const HeaderContainer = styled.header`
   font-size:24px;
   font-weight:bold;
   height: 60px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
 `;
