@@ -1,0 +1,21 @@
+.reviews {
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 1200px;
+
+    .reviews-item {
+        width: 500px;
+        border-radius: 20px;
+        border: 1px solid white;
+        margin: 0 10px;
+        text-align: center;
+        padding: 10px 10px;
+        img {
+            border-radius: 20px;
+        }
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    }
+}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Api from '../../../Servises/Api';
 import defaultImage from '../../../image/defaultImage.jpeg';
+import './cast.scss'
 
 let isCanceled = true;
 export class Cast extends Component {
@@ -25,15 +26,15 @@ export class Cast extends Component {
         const BASE_URL = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
         const { cast } = this.state;
         return (
-            <ul>
+            <ul className='cast'>
                 {cast.map(actor => (
-                    <li key={actor.id} >
+                    <li className='cast-item' key={actor.id} >
                         <img src={
                             actor.profile_path
                                 ? `${BASE_URL}${actor.profile_path}`
                                 : defaultImage
                         }
-                            width="150"
+                            width="200"
                             alt="photo"
                         />
                         <h3>{actor.name}</h3>

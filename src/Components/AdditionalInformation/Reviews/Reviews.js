@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Api from '../../../Servises/Api';
 import PropTypes from 'prop-types';
+import './reviews.scss'
 
 let isCanceled = true;
 
@@ -27,9 +28,9 @@ export class Reviews extends Component {
         return (
             <>
                 {
-                    <ul>
+                    <ul className="reviews">
                         {results.map(result => (
-                            <li key={result.author}>
+                            <li className="reviews-item" key={result.author}>
                                 <h3 >Author: {result.author}</h3>
                                 <p >{result.content}</p>
                             </li>
